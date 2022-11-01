@@ -7,7 +7,26 @@ function Login() {
   const [name,setName] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
+  const [disable,setDisable] = useState(true);
   const dispatch = useDispatch();
+  function validateEmail(email) {
+    if (email.includes('@')){
+      console.log('é email')
+      
+    }else{
+      console.log('não é email')
+    }
+    return email;
+  }
+  function ValidarSenha(senha){
+    if (password.length < 5){
+        setDisable(true)
+        setPassword(senha)
+    }else{
+      setDisable(false)
+      setPassword(senha);
+    }
+  }
   function handleSubmit(e){
     e.preventDefault()
     dispatch(login({
@@ -17,6 +36,7 @@ function Login() {
       loggedIn: true,
     }))
   }
+  
   return (
     <div className='login'>
       <form className='login-form' onSubmit={(e)=>handleSubmit(e)}>
@@ -31,15 +51,15 @@ function Login() {
           type="email"
           placeholder='email' 
           value={email}
-          onChange={(e)=> setEmail(e.target.value)}
+          onChange={(e)=> setEmail(validateEmail(e.target.value))}
           />
         <input 
           type="password" 
           placeholder='password' 
           value={password}
-          onChange={(e)=> setPassword(e.target.value)}
+          onChange={(e)=> ValidarSenha(e.target.value)}
         />  
-        <button type="submit">Enviar</button>
+        <button disabled={disable} type="submit">Enviar</button>
       </form>
     </div>
   )
