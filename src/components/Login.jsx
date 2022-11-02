@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { login } from '../features/userSlice'
+import { login } from '../reducers/userSlice'
 
 function Login() {
   const [name,setName] = useState("")
@@ -11,13 +11,13 @@ function Login() {
   const dispatch = useDispatch();
   function validateEmail(email) {
     if (email.includes('@')){
-      console.log('é email')
-      
-    }else{
-      console.log('não é email')
+        console.log('é email')
+        
+      }else{
+        console.log('não é email')
+      }
+      return email;
     }
-    return email;
-  }
   function ValidarSenha(senha){
     if (password.length < 5){
         setDisable(true)

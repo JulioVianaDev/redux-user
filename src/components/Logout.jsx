@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout, selectUser } from '../features/userSlice';
+import { logout, selectUser } from '../reducers/userSlice';
 
 function Logout() {
   const user = useSelector(selectUser)
